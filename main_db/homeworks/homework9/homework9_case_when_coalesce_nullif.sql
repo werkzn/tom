@@ -36,7 +36,6 @@ select product_name, unit_price,
 from products
 order by unit_price desc;
 
-
 --3. Найти заказчиков, не сделавших ни одного заказа. Вывести имя заказчика и значение "no orders", если order_id = null
 select c.contact_name, coalesce(o.order_id::text, 'no order') as orders_made
 from customers c
