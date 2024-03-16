@@ -43,5 +43,22 @@ $$ language sql;
 --Проверим функцию
 select * from young_old_employee('London');
 
-
+--5. Простая функция для тренировки. Узнать какой сезон.
+create or replace function get_season (_month_number int) returns text as $$
+	declare 
+		_season text;
+	begin
+		if _month_number in (1, 2, 12) then
+			_season = 'Winter';
+		elseif _month_number between 3 and 5 then 
+			_season = 'Spring';
+		elseif _month_number between 6 and 8 then 
+			_season = 'Summer';
+		else _season = 'Autumn';
+		end if;
+	return _season;
+	end;
+$$ language plpgsql;
+-- Проверим нашу функцию
+select get_season(9);
 
